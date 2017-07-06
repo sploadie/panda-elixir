@@ -9,7 +9,7 @@ defmodule Panda.Mixfile do
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       deps: deps(),
-      aliases: [run: "run --no-halt"]
+      # aliases: [run: "run --no-halt"]
     ]
   end
 
@@ -19,7 +19,7 @@ defmodule Panda.Mixfile do
   def application do
     [
       mod: { Panda, [] },
-      applications: [:cowboy, :ranch],
+      applications: [:cowboy, :ranch, :httpotion, :poison],
       extra_applications: [:logger]
     ]
   end
@@ -35,7 +35,9 @@ defmodule Panda.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      { :cowboy, github: "ninenines/cowboy", tag: "2.0.0-pre.3" }
+      {:cowboy, github: "ninenines/cowboy", tag: "2.0.0-pre.3"},
+      {:httpotion, "~> 3.0.2"},
+      {:poison, "~> 3.1"}
     ]
   end
 end

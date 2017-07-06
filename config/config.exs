@@ -11,7 +11,7 @@ use Mix.Config
 # You can configure for your application as:
 #
 config :panda,
-    apiKey: System.get_env("PANDA_API_KEY"),
+    api_key: System.get_env("PANDA_API_KEY"),
     email: System.get_env("PANDA_EMAIL")
 #
 # And access this configuration in your application as:
