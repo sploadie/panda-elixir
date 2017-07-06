@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Panda</title>
+    <link href='/public/css/styles.css' rel='stylesheet' type='text/css'/>
+  </head>
+  <body>
+    <div id='main'>
+      <img id='logo' src="/public/img/panda.png" alt="Panda">
+      <%=for match <- matches do %>
+        <h1>
+          <a style="text-decoration-line: none; color: black;" href=<%= ~s("/matches/#{match["id"]}")%>>
+            <%= String.capitalize(match["name"]) %>
+          </a>
+        </h1>
+      <% end %>
+    </div>
+  </body>
+</html>

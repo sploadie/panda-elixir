@@ -8,7 +8,10 @@ defmodule Panda.Supervisor do
   end
 
   def init(:ok) do
-    children = []
+    children = [
+      supervisor(Panda.Match.Cache.Supervisor, [Panda.Match.Cache.Supervisor]),
+      supervisor(Task.Supervisor, [[name: OddsSupervisor]])
+    ]
     supervise(children, strategy: :one_for_one)
   end
 end

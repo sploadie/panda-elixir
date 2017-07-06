@@ -5,7 +5,15 @@ defmodule Panda do
     { :ok, supervisor }
   end
 
+  @spec upcoming_matches() :: List
   def upcoming_matches do
-    Panda.HTTP.get!(:lol, :games, sort: "-begin_at", "page[size]": 5)
+    Panda.HTTP.get!("matches", %{"sort" => "-begin_at", "filter[future]" => "true", "page[size]" => 5})
+    |> Enum.map(fn match -> Map.take(match, ["begin_at", "id", "name"]) end)
+  end
+
+  @spec odds_for_match(integer) :: Map
+  def odds_for_match(id) do
+    odds = Panda.Match.get_odds_from_cache(id)
+    if (odds), do: odds, else: Panda.Match.get_odds!(id)
   end
 end
