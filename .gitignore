@@ -1,0 +1,41 @@
+# The directory Mix will write compiled artifacts to.
+/_build
+
+# If you run "mix test --cover", coverage assets end up here.
+/cover
+
+# The directory Mix downloads your dependencies sources to.
+/deps
+
+# Where 3rd-party dependencies like ExDoc output generated docs.
+/doc
+
+# Ignore .fetch files in case you like to edit your project deps locally.
+/.fetch
+
+# If the VM crashes, it generates a dump, let's ignore it too.
+erl_crash.dump
+
+# Also ignore archive artifacts (built via "mix archive.build").
+*.ez
+
+# THE USUAL OFFERING TO THE CODE GODS
+#           .d$$$$*$$$$$$bc
+#        .d$P"    d$$    "*$$.
+#       d$"      4$"$$      "$$.
+#     4$P        $F ^$F       "$c
+#    z$%        d$   3$        ^$L
+#   4$$$$$$$$$$$$$$$$$$$$$$$$$$$$$F
+#   $$$F"""""""$F""""""$F"""""C$$*$
+#  .$%"$$e    d$       3$   z$$"  $F
+#  4$    *$$.4$"        $$d$P"    $$
+#  4$      ^*$$.       .d$F       $$
+#  4$       d$"$$c   z$$"3$       $F
+#   $L     4$"  ^*$$$P"   $$     4$"
+#   3$     $F   .d$P$$e   ^$F    $P
+#    $$   d$  .$$"    "$$c 3$   d$
+#     *$.4$"z$$"        ^*$$$$ $$
+#      "$$$$P"             "$$$P
+#        *$b.             .d$P"
+#          "$$$ec.....ze$$$"
+#              "**$$$**""
