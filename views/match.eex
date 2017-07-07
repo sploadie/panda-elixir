@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Panda</title>
+    <link href='/public/css/styles.css' rel='stylesheet' type='text/css'/>
+  </head>
+  <body>
+    <div id='main'>
+      <img id='logo' src="/public/img/panda.png" alt="Panda">
+      <h1><%= String.capitalize(match["name"]) %>&nbsp;#<span id="match_id"><%= match["id"] %></span></h1>
+      <code id="match_info">LOADING THE SHIT OUT OF YOUR REQUEST</code>
+    </div>
+    <script>
+      var SocketHandler = (function(){
+        var my = {},
+          websocket,
+          messages = 0;
+        my.init = function(){
+          connect();
+        }  
+        function connect() {
+          websocket = new WebSocket('ws://localhost:7878/websocket');
+          websocket.onopen = function(evt) { sendMessage(); };
+          websocket.onmessage = function(evt) { onMessage(evt); };
+        };  
+        function onMessage(evt) { 
+          //console.log(evt.data);
+          message = JSON.parse(evt.data);
+          if(message.info !== undefined) {
+            document.getElementById('match_info').innerHTML = message.info;
+            disconnect();
+          }
+        };  
+        function sendMessage() {
+          value = document.getElementById('match_id').innerHTML;
+          message = {'match_id': value};
+          websocket.send(JSON.stringify(message));
+        };
+        function disconnect() {
+          websocket.close();
+        };
+        return my;
+      }());
+      SocketHandler.init();
+    </script>
+  </body>
+</html>

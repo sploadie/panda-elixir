@@ -37,7 +37,7 @@ defmodule Panda.Mixfile do
     [
       {:cowboy, github: "ninenines/cowboy", tag: "2.0.0-pre.3"},
       {:httpotion, "~> 3.0.2"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
     ]
   end
 end

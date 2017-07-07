@@ -5,9 +5,12 @@ defmodule Panda do
     { :ok, supervisor }
   end
 
+  @doc """
+  I know this was supposed to be 5 matches, but the top five matches almost never have their opponents announced.
+  """
   @spec upcoming_matches() :: List
   def upcoming_matches do
-    Panda.HTTP.get!("matches", %{"sort" => "-begin_at", "filter[future]" => "true", "page[size]" => 5})
+    Panda.HTTP.get!("matches", %{"sort" => "-begin_at", "filter[future]" => "true", "page[size]" => 20})
     |> Enum.map(fn match -> Map.take(match, ["begin_at", "id", "name"]) end)
   end
 

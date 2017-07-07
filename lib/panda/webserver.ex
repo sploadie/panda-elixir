@@ -13,15 +13,18 @@ defmodule Panda.WebServer do
       { :_,
         [
           # {"/", :cowboy_static, {:priv_file, :panda, "index.html"}},
-          {"/public/[...]", :cowboy_static, {:priv_dir, :panda, "public"}},
 
           # Serve a dynamic page with a custom handler
-          # When a request is sent to a dynamic page, pass the request to the custom handler
-          # defined in module DynamicPageHandler.
+          # When a request is sent to a dynamic page, pass the request to the custom handlers
+          # defined in controller modules.
           {"/", Panda.WebServer.MainController, []},
 
+          {"/matches/:id", Panda.WebServer.MatchController, []},
+
+          {"/public/[...]", :cowboy_static, {:priv_dir, :panda, "public"}},
+
           # Serve websocket requests.
-          # {"/websocket", WebsocketHandler, []}
+          {"/websocket", Panda.WebServer.WebsocketController, []}
       ]}
     ])
   end

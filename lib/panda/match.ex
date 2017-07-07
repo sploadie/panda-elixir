@@ -36,7 +36,7 @@ defmodule Panda.Match do
     total_wins_over_opponents = Enum.reduce(teams, 0, fn team, acc -> acc + length(team["wins_over_opponents"]) end)
 
     # Get odds, with a one to one ratio of matchup winrates and overall winrates
-    odds = Enum.reduce(teams, %{}, fn team, acc -> Map.put(acc, team["name"], ((length(team["wins"]) / length(team["matches"])) + (length(team["wins_over_opponents"]) / total_wins_over_opponents)) / 2 * 100) end)
+    odds = Enum.reduce(teams, %{}, fn team, acc -> Map.put(acc, team["name"], (((length(team["wins"]) + 1) / (length(team["matches"]) + 1)) + ((length(team["wins_over_opponents"]) + 1) / (total_wins_over_opponents + 1))) / 2 * 100) end)
     total = Enum.reduce(odds, 0, fn {_name, value}, acc -> acc + value end)
     odds = Enum.reduce(odds, %{}, fn {name, value}, acc -> Map.put(acc, name, value / total * 100) end)
 
